@@ -1,10 +1,11 @@
-package handlers
+package render
 
 import (
 	"fmt"
-	"html/template"
 	"net/http"
+	"text/template"
 )
+
 
 func RenderTemplate(w http.ResponseWriter, tmpl string){
 	ParsedTemplate, _ := template.ParseFiles("./templates/" + tmpl)
@@ -13,12 +14,4 @@ func RenderTemplate(w http.ResponseWriter, tmpl string){
 		fmt.Println("error parsing template", err)
 		return
 	}
-}
-
-func Home(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "home-page.tmpl")
-}
-
-func About(w http.ResponseWriter, r *http.Request) {
-	RenderTemplate(w, "about-page.tmpl")
 }

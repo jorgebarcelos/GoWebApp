@@ -1,7 +1,7 @@
 package endpoints
 
 import ("net/http"
-		"github.com/jorgebarcelos/GoWebApp/handlers"
+		"github.com/jorgebarcelos/GoWebApp/pkg/handlers"
 )
 
 
