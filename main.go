@@ -1,18 +1,10 @@
 package main
 
-import (
-	"fmt"
-	"net/http"
+import ("github.com/jorgebarcelos/GoWebApp/endpoints"
+		"github.com/jorgebarcelos/GoWebApp/server"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		n, err := fmt.Fprintf(w, "Hello Motherfucker")
-		if err != nil{
-			fmt.Println(err)
-		}
-		fmt.Printf("number of bytes: %d\n", n)
-	})
-
-	http.ListenAndServe(":8000", nil)
+	endpoints.Endpoints()
+	server.ServerStart()
 }
