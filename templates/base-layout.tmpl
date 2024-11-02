@@ -1,0 +1,31 @@
+{{define "base"}}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Home</title>
+        {{block "css" .}}
+
+        {{end}}
+    </head>
+
+    <body>
+        {{block "home" .}}
+
+        {{end}}
+
+        {{block "about" .}}
+
+        {{end}}
+
+        {{block "js" .}}
+
+        {{end}}
+
+    </body>
+
+    </html>
+{{end}}
