@@ -2,11 +2,13 @@ package render
 
 import (
 	"bytes"
-	"github.com/jorgebarcelos/GoWebApp/pkg/config"
 	"log"
 	"net/http"
 	"path/filepath"
 	"text/template"
+	"github.com/jorgebarcelos/GoWebApp/pkg/config"
+	"github.com/jorgebarcelos/GoWebApp/pkg/models"
+
 )
 
 var app *config.AppConfig
@@ -16,9 +18,13 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
+func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+	return td
+}
+
+func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
 	var templateCache map[string]*template.Template
-	
+
 	if app.UseCache {
 		// create a template cache
 		templateCache = app.TemplateCache
@@ -34,7 +40,9 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 
 	buf := new(bytes.Buffer)
 
-	_ = myTmpl.Execute(buf, nil)
+	td = AddDefaultData(td)
+
+	_ = myTmpl.Execute(buf, td)
 
 	//render template
 	_, err := buf.WriteTo(w)
